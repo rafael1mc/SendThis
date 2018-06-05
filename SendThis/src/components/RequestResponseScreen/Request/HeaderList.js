@@ -3,14 +3,14 @@ import { View, Text, StyleSheet, } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { changeHeaderKeyAction, changeHeaderValueAction } from './../../../actions/requestAction';
-import HeaderRow from './HeaderRow';
+import KeyValue from './../../Common/KeyValue';
 
 class HeaderList extends Component {
   render() {
     const rows = this.props.headers.map((item, i) => {
       return (
         <View key={'c' + i} style={styles.headerRow}>
-          <HeaderRow
+          <KeyValue
             key={i}
             id={i}
             keyVal={item.key}

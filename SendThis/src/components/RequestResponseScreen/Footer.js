@@ -6,24 +6,6 @@ import { connect } from 'react-redux';
 import { sendRequestAction } from './../../actions/requestAction';
 
 class Footer extends React.Component {
-  /*
-  lul = () => {
-    fetch('http://www.tabhost.com.br/test_request.php').then(response => {
-      console.log(response);
-      console.log(response.headers);
-      console.log(response.headers.entries());
-      var obj = response.headers;
-      for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-            var val = obj[key];
-            console.log(val);
-            // use val
-        }
-    }
-      
-  });
-}*/
-
   onClickSend = () => {
     if (this.props.url.trim() == '') {
       alert('Please, insert URL.');
@@ -37,7 +19,7 @@ class Footer extends React.Component {
       <View style={styles.root}>
         <TouchableHighlight
           style={styles.buttonMenu}
-          onPress={() => { }}
+          onPress={() => { alert('Not available yet.') }}
         >
           <Image
             style={styles.iconMenu}
@@ -54,31 +36,6 @@ class Footer extends React.Component {
       </View>
     );
   }
-  /*
-  render() {
-    return (
-      <View style={styles.root}>
-        <TouchableOpacity
-          style={styles.menuButton}
-          onPress={this.props.onClickMenu}>
-          <Image
-            source={require('./../../resources/icons/menu.png')}
-            style={styles.menuIcon}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.sendButton}
-          onPress={this.props.onClickSend}
-        >
-          <Image
-            source={require('./../../resources/' + this.props.iconSend)}
-            style={styles.sendIcon}
-          />
-        </TouchableOpacity>
-      </View>
-    );
-  }
-   */
 }
 
 const mapStateToProps = (state) => {

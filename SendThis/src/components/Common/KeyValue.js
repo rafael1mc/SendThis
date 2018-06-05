@@ -6,7 +6,7 @@ const KeyValue = (props) => {
   return (
     <View style={styles.root}>
       <TextInput
-        style={styles.headerKey}
+        style={styles.key}
         value={props.key}
         placeholder={props.placeholderKey}
         placeholderTextColor={Color.lightGray}
@@ -14,7 +14,7 @@ const KeyValue = (props) => {
         onChangeText={props.onChangeKey}
       />
       <TextInput
-        style={styles.headerValue}
+        style={styles.value}
         value={props.value}
         placeholder={props.placeholderValue}
         placeholderTextColor={Color.lightGray}
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   root: {
     flexDirection: 'row',
   },
-  headerKey: {
+  key: {
     flex: 1,
     marginRight: 5,
     padding: 10,
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.trueWhite,
     color: Color.primaryDark,
   },
-  headerValue: {
+  value: {
     flex: 1,
     marginLeft: 5,
     padding: 10,

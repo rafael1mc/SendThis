@@ -4,8 +4,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { changeRequestTab } from './../../actions/layoutAction';
 import TabItem from './TabItem';
-//import RequestScreen from './RequestScreen';
-//import ResponseScreen from './ResponseScreen';
 import { Color } from './../../resources/styles/MainStyle';
 
 class Tabs extends Component {
@@ -35,28 +33,6 @@ class Tabs extends Component {
       </View>
     )
   }
-  /*
-  onPressTabItem = (itemName) => {
-    this.props.onChange(itemName);
-  }
-
-  render() {
-    return (
-      <View style={styles.root}>
-        <TabItem
-          name={this.state.items.request.name}
-          selected={this.state.items.request.selected}
-          onPress={this.onPressTabItem(this.state.item.response.name)}
-        />
-        <TabItem
-          name={this.state.items.response.name}
-          selected={this.state.items.response.selected}
-          onPress={this.onPressTabItem(this.state.items.response.name)}
-        />
-      </View>
-    );
-  }
-  */
 }
 
 const mapStateToProps = (state) => {

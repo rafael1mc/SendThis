@@ -26,31 +26,6 @@ const TabItem = (props) => {
 
 export default TabItem;
 
-/*
-constructor(props) {
-  super(props);
-  backgroundColor = this.props.selected ?
-    Color.primaryDark : color.primary;
-}
-
-onPress = (itemName) => {
-  this.props.onPress(itemName);
-}
-render() {
-  return (
-    <TouchableWithoutFeedback
-      style={styles.itemContainer}
-      onPress={this.onPress(this.props.name.toLowerCase())}
-    >
-      <Text style={styles.itemText}>
-        {this.props.name.toUpperCase()}
-      </Text>
-    </TouchableWithoutFeedback>
-  );
-}
-*/
-
-
 const styles = StyleSheet.create({
   root: {
     flex: 1,

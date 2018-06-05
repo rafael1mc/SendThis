@@ -3,13 +3,13 @@ import { View, Text, StyleSheet } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { changeBodyKeyAction, changeBodyValueAction } from './../../../actions/requestAction';
-import KeyValueRow from './KeyValueRow'
+import KeyValue from './../../Common/KeyValue';
 
 class BodyList extends React.Component {
   render() {
     const items = this.props.list.map((item, index) => {
       return <View key={'c' + index} style={styles.keyValue} >
-        <KeyValueRow
+        <KeyValue
           key={index}
           keyVal={item.key}
           valueVal={item.value}

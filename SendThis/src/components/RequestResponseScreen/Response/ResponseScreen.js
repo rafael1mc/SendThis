@@ -107,26 +107,4 @@ const styles = StyleSheet.create({
     color: Color.primaryDark,
   },
 
-
-  /*
-    headerContainer: {
-      height: '30%',
-  
-    },
-    headerScroll: {
-      flex: 1,
-    },
-  
-    bodyContainer: {
-      flex: 1,
-      borderRadius: 7,
-      borderWidth: 0,
-      borderColor: Color.transparent,
-      backgroundColor: Color.trueWhite,
-    },
-    bodyValue: {
-      flex: 1,
-      color: Color.primaryDark,
-    },
-    */
 });

@@ -14,19 +14,20 @@ class RequestScreen extends Component {
     let body = <View></View>;
     if (this.props.method == 'post') {
       body = (
-        <View><HeaderLiner
-          style={styles.headerLiner}
-          textStyle={styles.headerLinerText}
-          lineStyle={styles.headerLinerLine}
-          text="Body"
-        />
-
+        <View>
+          <HeaderLiner
+            style={styles.headerLiner}
+            textStyle={styles.headerLinerText}
+            lineStyle={styles.headerLinerLine}
+            text="Body"
+          />
           <View style={styles.contentContainer}>
             <Body />
           </View>
         </View>
       );
     }
+
     return (
       <View style={styles.root}>
         <View style={styles.urlMethodContainer}>
@@ -111,7 +112,6 @@ const styles = StyleSheet.create({
   },
   methodContainer: {
     width: 135,
-    //padding: 10,
     marginLeft: 10,
     borderRadius: 7,
     borderWidth: 0,
@@ -124,8 +124,6 @@ const styles = StyleSheet.create({
   },
 
   headerLiner: {
-    //marginTop: 10,
-    //marginBottom: 10,
   },
   headerLinerLine: {
     borderColor: Color.lightGray,
@@ -142,59 +140,4 @@ const styles = StyleSheet.create({
   contentContainer: {
     padding: 10,
   },
-
-
-  /*
-  url: {
-    flex: 3,
-    borderRadius: 7,
-    borderWidth: 0,
-    borderColor: Color.transparent,
-
-    backgroundColor: Color.trueWhite,
-    color: Color.primary,
-
-    fontSize: 14,
-    fontFamily: Font.family,
-  },
-  method: {
-    flex: 1,
-    borderRadius: 7,
-    borderWidth: 0,
-    borderColor: Color.transparent,
-
-    backgroundColor: Color.trueWhite,
-    color: Color.primary,
-
-    fontSize: 14,
-    fontFamily: Font.family,
-  },
-
-  headerContainer: {
-
-  },
-  queryStringContainer: {
-
-  },
-
-  bodyContainter: {
-
-  },
-  bodyType: {
-    borderRadius: 7,
-    borderWidth: 0,
-    borderColor: Color.transparent,
-    backgroundColor: Color.trueWhite,
-    color: Color.primary,
-  },
-
-  bodyValue: {
-    borderRadius: 7,
-    borderWidth: 0,
-    borderColor: Color.transparent,
-    backgroundColor: Color.trueWhite,
-    color: Color.primary,
-    height: Math.min(35, this.state.height),
-  }
-*/
 });

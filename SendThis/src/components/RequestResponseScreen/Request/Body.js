@@ -12,7 +12,9 @@ class Body extends Component {
     let bodyComponent = <View></View>;
     if (this.props.bodyType == 'form_url_encoded') {
       bodyComponent = <BodyList />
-    } else if (this.props.bodyType == 'raw') {
+    } else if (this.props.bodyType == 'raw' ||
+      this.props.bodyType == 'json' ||
+      this.props.bodyType == 'text') {
       bodyComponent = <BodyRaw />;
     }
 
@@ -62,7 +64,6 @@ const styles = StyleSheet.create({
     width: '100%', // TODO test without
     height: 50,
     marginTop: 10,
-    //padding: 10,
     borderRadius: 7,
     borderWidth: 0,
     borderColor: Color.transparent,

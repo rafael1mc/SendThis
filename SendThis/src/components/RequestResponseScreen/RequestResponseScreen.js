@@ -61,8 +61,5 @@ const styles = StyleSheet.create({
   footerContainer: {
     flex: 0,
     height: 70,
-
-    //elevation: 3,
-    //backgroundColor: 'white',
   }
 });
