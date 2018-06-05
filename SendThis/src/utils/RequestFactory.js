@@ -2,7 +2,7 @@ import {GetRequest, PostRequest} from './Request';
 
 export class RequestFactory{
     static getRequest(requestData){
-        switch(method){
+        switch(requestData.method.toUpperCase()){
             case 'GET':
                 return new GetRequest(requestData);
             case 'POST':

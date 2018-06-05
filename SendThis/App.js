@@ -12,3 +12,10 @@ export default class App extends Component {
     );
   }
 }
+
+console.ignoredYellowBox = [
+  'Warning: componentWillMount is deprecated',
+  'Warning: componentWillReceiveProps is deprecated',
+  'Warning: isMounted(...) is deprecated',
+  'Warning: componentWillUpdate is deprecated',
+];

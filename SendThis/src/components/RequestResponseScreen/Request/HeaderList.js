@@ -17,6 +17,8 @@ class HeaderList extends Component {
             valueVal={item.value}
             onChangeKey={(text) => this.props.changeHeaderKey(i, text)}
             onChangeValue={(text) => this.props.changeHeaderValue(i, text)}
+            placeholderKey="Header Key..."
+            placeholderValue="Header Value..."
           />
         </View>
       );

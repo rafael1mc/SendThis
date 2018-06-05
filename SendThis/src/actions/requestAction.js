@@ -1,4 +1,4 @@
-import { SendThis } from './../utils/SendThis';
+import SendThis from './../utils/SendThis';
 
 export const changeUrlAction = (url) => {
   return {
@@ -59,7 +59,8 @@ export const changeBodyRawAction = (text) => {
 export const sendRequestAction = () => {
   return (dispatch, getState) => {
     dispatch({ type: 'LAYOUT_SET_LOADING', payload: true });
-    let request = SendThis.makeRequest();
+    let { url, method, header, bodyType, bodyData, bodyRaw } = getState().request;
+    let request = SendThis.makeRequest(method, url, header, bodyType, bodyData, bodyRaw);
     dispatch(
       request.then(response => {
         dispatch({ type: 'LAYOUT_SET_LOADING', payload: false })

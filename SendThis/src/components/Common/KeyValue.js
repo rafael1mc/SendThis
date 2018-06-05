@@ -7,7 +7,7 @@ const KeyValue = (props) => {
     <View style={styles.root}>
       <TextInput
         style={styles.key}
-        value={props.key}
+        value={props.keyVal}
         placeholder={props.placeholderKey}
         placeholderTextColor={Color.lightGray}
         underlineColorAndroid='transparent'
@@ -15,7 +15,7 @@ const KeyValue = (props) => {
       />
       <TextInput
         style={styles.value}
-        value={props.value}
+        value={props.valueVal}
         placeholder={props.placeholderValue}
         placeholderTextColor={Color.lightGray}
         underlineColorAndroid='transparent'
