@@ -28,7 +28,6 @@ export default class MyRequestItem extends PureComponent {
 
 const styles = StyleSheet.create({
   root: {
-    flex: 2,
     height: 65,
   },
   innerContainer: {

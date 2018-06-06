@@ -10,18 +10,6 @@ class MainScreen extends Component {
     this.state = {
       requests: []
     };
-
-    /*
-    StorageUtil.storeRequest(
-      {
-        name: 'Foo',
-        url: 'url foo',
-        method: 'get',
-      }
-    );
-    */
-    
-
   }
 
   async componentDidMount() {
@@ -29,17 +17,23 @@ class MainScreen extends Component {
     if (!requests) {
       requests = [];
     }
-    //alert(requests);
+    if (requests.length > 5) {
+      requests = requests.slice(0, 5);
+    }
     this.setState({ requests: requests });
   }
 
+  onPressShowAll = () => {
+    alert('all');
+  }
+
+  onPressNewRequest = () => {
+    alert('new');
+  }
+
   render() {
-    for (let aaaa in this.state.requests) {
-      alert(aaaa);
-      alert(this.state.requests[aaaa]);
-    }
-    const myRequestsItems = this.state.requests.map((item) => {
-      return <MyRequestItem key={item.id} name={item.name} URL={item.url} method={item.method} />
+    const myRequestsItems = this.state.requests.map((item, i) => {
+      return <MyRequestItem key={i} name={item.name} URL={item.url} method={item.method} />
     });
     const emptyRequestList = (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -65,7 +59,9 @@ class MainScreen extends Component {
                 MY REQUESTS
               </Text>
               <TouchableOpacity
-                style={styles.myRequestsHeaderButtonShowAll}>
+                style={styles.myRequestsHeaderButtonShowAll}
+                onPress={this.onPressShowAll}
+                >
                 <Text style={styles.myRequestsHeaderButtonTextShowAll}>
                   SHOW ALL
                 </Text>
@@ -76,7 +72,9 @@ class MainScreen extends Component {
         </View>
         <View style={styles.createRequestContainer}>
           <TouchableOpacity
-            style={styles.createRequestButton}>
+            style={styles.createRequestButton}
+            onPress={this.onPressNewRequest}
+            >
             <Image
               style={styles.createRequestButtonIcon}
               source={require('./../../resources/icons/Add.png')}

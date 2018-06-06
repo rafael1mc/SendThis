@@ -32,7 +32,7 @@ const getData = async (key, defaultValue = null) => {
 
 const setData = (key, value) => {
   AsyncStorage.setItem(`@${PARAMS.superStore}:${key}`, value)
-    .catch(error => { alert('fudeo'); alert(error); console.log(error) });
+    .catch(error => { console.log(error) });
 }
 
 export default root = {
