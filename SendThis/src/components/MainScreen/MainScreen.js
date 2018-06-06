@@ -2,22 +2,51 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
 import { Color, Font } from './../../resources/styles/MainStyle';
 import MyRequestItem from './../MyRequestItem/MyRequestItem';
-
-const requests = [
-  { key: 0, name: 'Example Request 01', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 1, name: 'Example Request 02', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 2, name: 'Example Request 03', URL: 'http://www.example.com/foo/bar/foo/bar/foo/bar/foo/bar/', method: 'OPTIONS' },
-  { key: 3, name: 'Example Request 04', URL: 'http://www.example.com/foo', method: 'POST' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-];
+import StorageUtil from './../../utils/StorageUtil';
 
 class MainScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      requests: []
+    };
+
+    /*
+    StorageUtil.storeRequest(
+      {
+        name: 'Foo',
+        url: 'url foo',
+        method: 'get',
+      }
+    );
+    */
+    
+
+  }
+
+  async componentDidMount() {
+    let requests = await StorageUtil.getRequests();
+    if (!requests) {
+      requests = [];
+    }
+    //alert(requests);
+    this.setState({ requests: requests });
+  }
+
   render() {
-    const myRequestsItems = requests.map((item) => {
-      return <MyRequestItem key={item.key} name={item.name} URL={item.URL} method={item.method} />
+    for (let aaaa in this.state.requests) {
+      alert(aaaa);
+      alert(this.state.requests[aaaa]);
+    }
+    const myRequestsItems = this.state.requests.map((item) => {
+      return <MyRequestItem key={item.id} name={item.name} URL={item.url} method={item.method} />
     });
     const emptyRequestList = (
-      <Text>Foo Bar Placeholder Bleeehh</Text>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{ color: Color.black30, fontSize: 18, fontWeight: 'bold' }}>
+          No Requests
+        </Text>
+      </View>
     );
     return (
       <View style={styles.root}>
@@ -42,15 +71,15 @@ class MainScreen extends Component {
                 </Text>
               </TouchableOpacity>
             </View>
-            {myRequestsItems ? myRequestsItems : emptyRequestList}
+            {this.state.requests.length ? myRequestsItems : emptyRequestList}
           </View>
         </View>
         <View style={styles.createRequestContainer}>
           <TouchableOpacity
             style={styles.createRequestButton}>
             <Image
-              source={require('./../../resources/icons/Add.png')}
               style={styles.createRequestButtonIcon}
+              source={require('./../../resources/icons/Add.png')}
             />
           </TouchableOpacity>
         </View>
@@ -110,7 +139,8 @@ const styles = StyleSheet.create({
     backgroundColor: Color.trueWhite,
   },
   myRequestsHeader: {
-    flex: 3,
+    width: '100%',
+    height: 50,
     flexDirection: 'row',
     paddingHorizontal: 10,
     justifyContent: 'space-between',
@@ -162,7 +192,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
   },
   createRequestButtonIcon: {
-    height: '55%',
+    height: '40%',
     resizeMode: 'contain',
   },
 
