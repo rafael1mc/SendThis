@@ -40,6 +40,17 @@ export default requestReducer = (state = INITIAL_STATE, action) => {
       return state;
       //return { ...state, bodyRaw: action.payload.data }
     }
+    case 'SET_REQUEST': {
+      let req = action.payload;
+      return {
+        url: req.url,
+        method: req.method,
+        headers: req.headers,
+        bodyType: req.bodyType,
+        bodyData: req.bodyData,
+        bodyRaw: req.bodyRaw,
+      };
+    }
     default:
       return state;
   }

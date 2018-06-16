@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
 import { Color, Font } from './../../resources/styles/MainStyle';
-import MyRequestItem from './../MyRequestItem/MyRequestItem';
+import LineRequestItem from './../LineRequestItem/LineRequestItem';
 import StorageUtil from './../../utils/StorageUtil';
 
 class MainScreen extends Component {
@@ -10,6 +10,24 @@ class MainScreen extends Component {
     this.state = {
       requests: []
     };
+
+    /*
+    StorageUtil.storeRequest({
+      name: 'Test',
+      url: 'http://tabhost.com.br/test_request.php',
+      method: 'post',
+    
+      headers: [
+        { key: 'content-type', value: 'application/json' },
+      ],
+    
+      bodyType: 'raw',
+      bodyData: [
+        { key: '', value: '' },
+      ],
+      bodyRaw: '{"foo":"bar"}',
+    });
+    */
   }
 
   async componentDidMount() {
@@ -28,12 +46,24 @@ class MainScreen extends Component {
   }
 
   onPressNewRequest = () => {
-    alert('new');
+    let { navigate } = this.props.navigation;
+    navigate('RequestResponse');
+  }
+
+  onPressItem = (item) => {
+    let {navigate} = this.props.navigation;
+    navigate('MyRequest', {item: item});
   }
 
   render() {
-    const myRequestsItems = this.state.requests.map((item, i) => {
-      return <MyRequestItem key={i} name={item.name} URL={item.url} method={item.method} />
+    const lineRequestsItems = this.state.requests.map((item, i) => {
+      return <LineRequestItem
+        key={i}
+        name={item.name}
+        URL={item.url}
+        method={item.method}
+        onPress={() => this.onPressItem(item)}
+      />
     });
     const emptyRequestList = (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -61,20 +91,20 @@ class MainScreen extends Component {
               <TouchableOpacity
                 style={styles.myRequestsHeaderButtonShowAll}
                 onPress={this.onPressShowAll}
-                >
+              >
                 <Text style={styles.myRequestsHeaderButtonTextShowAll}>
                   SHOW ALL
                 </Text>
               </TouchableOpacity>
             </View>
-            {this.state.requests.length ? myRequestsItems : emptyRequestList}
+            {this.state.requests.length ? lineRequestsItems : emptyRequestList}
           </View>
         </View>
         <View style={styles.createRequestContainer}>
           <TouchableOpacity
             style={styles.createRequestButton}
             onPress={this.onPressNewRequest}
-            >
+          >
             <Image
               style={styles.createRequestButtonIcon}
               source={require('./../../resources/icons/Add.png')}

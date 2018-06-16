@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions, ScrollView, Image } from 'react-native';
-import MyRequestItem from './../MyRequestItem/MyRequestItem';
+import MyRequestItem from './../LineRequestItem/LineRequestItem';
 import { Color, Font } from './../../resources/styles/MainStyle';
+
 
 const requests = [
   { key: 0, name: 'Example Request 01', URL: 'http://www.example.com/foo', method: 'GET' },

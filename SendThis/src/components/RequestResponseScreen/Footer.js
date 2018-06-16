@@ -14,16 +14,22 @@ class Footer extends React.Component {
     }
   }
 
+  onClickMenu = () => {
+    alert('Not available yet.');
+  }
+
   render() {
     return (
       <View style={styles.root}>
         <TouchableHighlight
           style={styles.buttonMenu}
-          onPress={() => { alert('Not available yet.') }}
+          onPress={this.onClickMenu}
         >
           <Image
             style={styles.iconMenu}
-            source={require('./../../resources/icons/menu.png')} />
+            source={require('./../../resources/icons/menu.png')}
+            tintColor="#FFFFFF"
+          />
         </TouchableHighlight>
         <TouchableOpacity
           style={styles.buttonSend}

@@ -2,6 +2,7 @@ import { StackNavigator, } from 'react-navigation';
 import MainScreen from './src/components/MainScreen/MainScreen';
 import MyRequestsScreen from './src/components/MyRequestsScreen/MyRequestsScreen';
 import RequestResponseScreen from './src/components/RequestResponseScreen/RequestResponseScreen';
+import MyRequest from './src/components/MyRequest/MyRequest';
 
 //import TestScreen from './src/components/TestScreen/TestScreen';
 
@@ -24,6 +25,12 @@ export default Stack = StackNavigator({
       header: null,
     }
   },
+  MyRequest: {
+    screen: MyRequest,
+    navigationOptions: {
+      header: null,
+    }
+  },
   /*
   Test: {
     screen: TestScreen,
@@ -33,9 +40,10 @@ export default Stack = StackNavigator({
   },
   */
 }, {
-    //initialRouteName: 'RequestResponse',
+    initialRouteName: 'RequestResponse',
     //initialRouteName: 'Test',
     //initialRouteName: 'MyRequests',
-    initialRouteName: 'Main'
+    //initialRouteName: 'MyRequest',
+    //initialRouteName: 'Main'
   }
 );

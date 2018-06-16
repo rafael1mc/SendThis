@@ -56,6 +56,13 @@ export const changeBodyRawAction = (text) => {
   }
 };
 
+export const setRequestAction = (request) => {
+  return {
+    type: 'SET_REQUEST',
+    payload: request
+  };
+}
+
 export const sendRequestAction = () => {
   return (dispatch, getState) => {
     dispatch({ type: 'LAYOUT_SET_LOADING', payload: true });

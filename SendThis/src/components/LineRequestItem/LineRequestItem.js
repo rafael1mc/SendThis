@@ -1,11 +1,14 @@
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Color, Font } from './../../resources/styles/MainStyle';
 
-export default class MyRequestItem extends PureComponent {
+export default class LineRequestItem extends PureComponent {
   render() {
     return (
-      <View style={styles.root}>
+      <TouchableOpacity
+      style={styles.root}
+      onPress={this.props.onPress}
+      >
         <View style={styles.innerContainer}>
           <View style={styles.leftContainer}>
             <Text style={styles.name}>{this.props.name}</Text>
@@ -21,7 +24,7 @@ export default class MyRequestItem extends PureComponent {
             <Text style={styles.method}>{this.props.method}</Text>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }
