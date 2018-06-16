@@ -13,6 +13,12 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, requestResponseTab: action.payload }
     case 'LAYOUT_SET_LOADING':
       return { ...state, isLoading: action.payload }
+    case 'NEW_REQUEST': {
+      return { ...state, requestResponseTab: 'Request' };
+    }
+    case 'SET_REQUEST': {
+      return { ...state, requestResponseTab: 'Request' };
+    }
     //return state;
     /*case 'FORM_REQUEST_SEND':
       return { ...state, isLoading: false, requestResponseTab: 'Response' }*/

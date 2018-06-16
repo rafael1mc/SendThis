@@ -6,7 +6,11 @@ import { setRequestAction } from './../../actions/requestAction';
 import { Color, Font } from './../../resources/styles/MainStyle';
 import RequestItem from './RequestItem';
 
-class MainScreen extends Component {
+const bodyTypeMap = {
+  form_url_encoded: 'Form URL Encodede',
+}
+
+class MyRequest extends Component {
   onPressEdit = () => {
     this.props.setRequest(this.props.navigation.getParam('item'));
     let { navigate } = this.props.navigation;
@@ -64,7 +68,11 @@ class MainScreen extends Component {
                 </View>
                 <View style={{ flex: 1, }}>
                   <Text style={styles.label}>Body Type</Text>
-                  <Text style={styles.value}>{request.bodyType}</Text>
+                  <Text style={styles.value}>
+                    {bodyTypeMap[request.bodyType] ?
+                      bodyTypeMap[request.bodyType] :
+                      request.bodyType}
+                  </Text>
                 </View>
               </View>
               <Text style={styles.label}>Headers</Text>
@@ -100,7 +108,7 @@ const mapDispatchToProps = (dispatch) => {
     dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(MainScreen);
+export default connect(null, mapDispatchToProps)(MyRequest);
 
 
 const width = Dimensions.get('window').width;

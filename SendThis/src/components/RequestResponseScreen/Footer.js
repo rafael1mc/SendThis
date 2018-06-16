@@ -15,7 +15,7 @@ class Footer extends React.Component {
   }
 
   onClickMenu = () => {
-    alert('Not available yet.');
+    this.props.onClickMenu();
   }
 
   render() {

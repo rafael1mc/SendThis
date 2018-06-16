@@ -40,10 +40,10 @@ export default Stack = StackNavigator({
   },
   */
 }, {
-    initialRouteName: 'RequestResponse',
+    //initialRouteName: 'RequestResponse',
     //initialRouteName: 'Test',
     //initialRouteName: 'MyRequests',
     //initialRouteName: 'MyRequest',
-    //initialRouteName: 'Main'
+    initialRouteName: 'Main'
   }
 );

@@ -6,6 +6,7 @@ function generateRequest(requestData) {
   requestData.header = Util.convertArrayToKeyValue(requestData.header);
 
   let request = RequestFactory.getRequest(requestData);
+
   return request.getConfig();
 }
 
@@ -19,7 +20,6 @@ module.exports = {
       bodyData: bodyData,
       bodyRaw: bodyRaw,
     };
-
     return axios(
       generateRequest(requestData)
     );

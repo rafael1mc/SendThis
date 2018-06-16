@@ -1,4 +1,6 @@
 const INITIAL_STATE = {
+  id: -1,
+  name: '',
   url: '',
   method: 'get',
 
@@ -18,6 +20,9 @@ export default requestReducer = (state = INITIAL_STATE, action) => {
     if (action.error) { action.type = 'NON_EXISTING_ACTION' }
   }
   switch (action.type) {
+    case 'FORM_REQUEST_CHANGE_NAME': {
+      return { ...state, name: action.payload };
+    }
     case 'FORM_REQUEST_CHANGE_URL': {
       return { ...state, url: action.payload };
     }
@@ -43,6 +48,8 @@ export default requestReducer = (state = INITIAL_STATE, action) => {
     case 'SET_REQUEST': {
       let req = action.payload;
       return {
+        id: req.id,
+        name: req.name,
         url: req.url,
         method: req.method,
         headers: req.headers,
@@ -50,6 +57,12 @@ export default requestReducer = (state = INITIAL_STATE, action) => {
         bodyData: req.bodyData,
         bodyRaw: req.bodyRaw,
       };
+    }
+    case 'NEW_REQUEST': {
+      return INITIAL_STATE;
+    }
+    case 'REQUEST_SET_ID': {
+      return { ...state, id: action.payload };
     }
     default:
       return state;

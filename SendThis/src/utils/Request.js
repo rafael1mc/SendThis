@@ -21,6 +21,7 @@ class Request {
       headers: this.headers
     };
     obj = Object.assign(obj, this.getConfigSpec());
+    return obj;
   }
 }
 

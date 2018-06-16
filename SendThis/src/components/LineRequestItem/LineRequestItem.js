@@ -21,7 +21,7 @@ export default class LineRequestItem extends PureComponent {
             </Text>
           </View>
           <View style={styles.rightContainer}>
-            <Text style={styles.method}>{this.props.method}</Text>
+            <Text style={styles.method}>{this.props.method.toUpperCase()}</Text>
           </View>
         </View>
       </TouchableOpacity>

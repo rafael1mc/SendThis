@@ -2,44 +2,34 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions, ScrollView, Image } from 'react-native';
 import MyRequestItem from './../LineRequestItem/LineRequestItem';
 import { Color, Font } from './../../resources/styles/MainStyle';
-
-
-const requests = [
-  { key: 0, name: 'Example Request 01', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 1, name: 'Example Request 02', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 2, name: 'Example Request 03', URL: 'http://www.example.com/foo/bar/foo/bar/foo/bar/foo/bar/', method: 'OPTIONS' },
-  { key: 3, name: 'Example Request 04', URL: 'http://www.example.com/foo', method: 'POST' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-  { key: 4, name: 'Example Request 05', URL: 'http://www.example.com/foo', method: 'GET' },
-];
+import StorageUtil from './../../utils/StorageUtil';
 
 class MyRequestsScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      requests: [],
+    };
+  }
+
+  async componentDidMount() {
+    let requests = await StorageUtil.getRequests();
+    if (!requests) {
+      requests = [];
+    }
+    this.setState({ requests: requests });
+  }
+
   render() {
-    const myRequestsItems = requests.map((item) => {
-      return <MyRequestItem key={item.key} name={item.name} URL={item.URL} method={item.method} />
+    const myRequestsItems = this.state.requests.map((item) => {
+      return <MyRequestItem key={item.id} name={item.name} URL={item.URL} method={item.method} />
     });
     const emptyRequestList = (
-      <Text>Foo Bar Placeholder Bleeehh</Text>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{ color: Color.black30, fontSize: 18, fontWeight: 'bold' }}>
+          No Requests
+        </Text>
+      </View>
     );
     return (
       <View style={styles.root}>
@@ -52,12 +42,19 @@ class MyRequestsScreen extends Component {
               MY REQUESTS
               </Text>
           </View>
-          <ScrollView
-            style={styles.scrollView}
-            contentContainerStyle={styles.scrollViewItem}
-          >
-            {myRequestsItems ? myRequestsItems : emptyRequestList}
-          </ScrollView>
+          {
+            this.state.requests.length > 0
+              ?
+              <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollViewItem}
+              >
+                {myRequestsItems}
+              </ScrollView>
+              :
+              emptyRequestList
+          }
+
         </View>
 
         <View style={styles.buttonContainer}>

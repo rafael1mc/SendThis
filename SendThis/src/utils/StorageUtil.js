@@ -8,25 +8,15 @@ const PARAMS = {
 };
 
 const getData = async (key, defaultValue = null) => {
-  console.log("1");
   try {
-    console.log("2");
     const value = await AsyncStorage.getItem(`@${PARAMS.superStore}:${key}`);
-    console.log("3");
     if (value === null) {
-      console.log("4");
       return defaultValue;
-      console.log("5");
     } else {
-      console.log("6");
       return value;
-      console.log("7");
     }
-    console.log("8");
   } catch (error) {
-    console.log("9");
     return defaultValue;
-    console.log("0");
   }
 }
 
@@ -38,28 +28,35 @@ const setData = (key, value) => {
 export default root = {
   storeRequest: async (request) => {
     let requests = await getData(PARAMS.keys.requests, []);
+    let id = -1;
     try {
       requests = JSON.parse(requests);
     } catch (error) {
       requests = [];
     }
-    if (request.id == null) {
+    if (request.id == null || request.id == -1) {
       requests.push(request);
+      id = requests.length - 1;
     } else {
       requests[request.id] = request;
+      id = request.id;
     }
     let json = JSON.stringify(requests);
     setData(PARAMS.keys.requests, json);
+    return id;
   },
   getRequests: async () => {
-    var requests = [];
+    ret = [];
     try {
-      requests = await getData(PARAMS.keys.requests, null);
+      let requests = await getData(PARAMS.keys.requests, null);
       requests = JSON.parse(requests);
+      ret = requests.map((item, i) => {
+        return { ...item, id: i };
+      });
     } catch (error) {
       console.log(error);
     }
-    return requests;
+    return ret;
   },/*
   getMainRequests: async () => {
     var requests = await this.getRequests();

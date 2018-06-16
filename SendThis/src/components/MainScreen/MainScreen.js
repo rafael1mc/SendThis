@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
 import { Color, Font } from './../../resources/styles/MainStyle';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux'
+import { newRequestAction } from './../../actions/requestAction';
 import LineRequestItem from './../LineRequestItem/LineRequestItem';
 import StorageUtil from './../../utils/StorageUtil';
 
@@ -42,17 +45,19 @@ class MainScreen extends Component {
   }
 
   onPressShowAll = () => {
-    alert('all');
+    let { navigate } = this.props.navigation;
+    navigate('MyRequests');
   }
 
   onPressNewRequest = () => {
+    this.props.newRequest();
     let { navigate } = this.props.navigation;
     navigate('RequestResponse');
   }
 
   onPressItem = (item) => {
-    let {navigate} = this.props.navigation;
-    navigate('MyRequest', {item: item});
+    let { navigate } = this.props.navigation;
+    navigate('MyRequest', { item: item });
   }
 
   render() {
@@ -116,7 +121,15 @@ class MainScreen extends Component {
   }
 }
 
-export default MainScreen;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      newRequest: newRequestAction,
+    },
+    dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(MainScreen);
 
 
 const width = Dimensions.get('window').width;

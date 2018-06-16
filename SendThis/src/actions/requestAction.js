@@ -1,4 +1,12 @@
 import SendThis from './../utils/SendThis';
+import StorageUtil from './../utils/StorageUtil';
+
+export const changeNameAction = (name) => {
+  return {
+    type: 'FORM_REQUEST_CHANGE_NAME',
+    payload: name,
+  }
+}
 
 export const changeUrlAction = (url) => {
   return {
@@ -79,3 +87,18 @@ export const sendRequestAction = () => {
     });
   };
 };
+
+export const saveRequestAction = () => {
+  return async (dispatch, getState) => {
+    alert(getState().request.id);
+    let id = await StorageUtil.storeRequest(getState().request);
+    dispatch({ type: 'REQUEST_SET_ID', payload: id })
+  }
+}
+
+export const newRequestAction = () => {
+  return {
+    type: 'NEW_REQUEST',
+    payload: null,
+  };
+}

@@ -12,12 +12,18 @@ export default requestReducer = (state = INITIAL_STATE, action) => {
       let headers = [];
       for (var k in action.payload.headers) {
         if (action.payload.headers.hasOwnProperty(k)) {
-          var hd = {key: [k], value: action.payload.headers[k]};
+          var hd = { key: [k], value: action.payload.headers[k] };
           headers.push(hd);
         }
       }
 
       return { ...state, headers: headers, body: action.payload.data };
+    }
+    case 'NEW_REQUEST': {
+      return INITIAL_STATE;
+    }
+    case 'SET_REQUEST': {
+      return INITIAL_STATE;
     }
     default:
       return state;
